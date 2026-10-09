@@ -4,8 +4,12 @@ export type JsonValue = JsonPrimitive | JsonValue[] | {
 };
 export declare const CANONICAL_MAX_NODES = 100000;
 export declare const CANONICAL_MAX_BYTES = 2000000;
+export interface CanonicalBudget {
+    maxNodes?: number;
+    maxBytes?: number;
+}
 /** Strict canonical JSON v1: UTF-16 key order, JSON number format, no coercions. */
-export declare function canonicalize(value: unknown): string;
+export declare function canonicalize(value: unknown, budget?: CanonicalBudget): string;
 /** Receipt exports use two-space JSON plus a newline. Refuse an artifact that
  * our own raw-text boundary could not ingest, including formatting overhead. */
 export declare function assertReceiptTextLimit(value: unknown): void;

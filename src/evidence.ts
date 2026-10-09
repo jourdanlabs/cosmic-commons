@@ -14,6 +14,8 @@ export interface EvidenceFact {
   observedAt?: string;
   expiresAt?: string;
   dependsOn?: string[];
+  /** M1 Admit: fact excluded at boundary but retained for dependency resolution. */
+  admissionExcluded?: string[];
 }
 export interface EvidenceBundle { sources: EvidenceSource[]; facts: EvidenceFact[] }
 export type FactStatus = 'AVAILABLE' | 'MISSING' | 'EXPIRED' | 'FUTURE' | 'CONFLICT' | 'INVALID';
@@ -40,7 +42,16 @@ export function exactKeys(value: Record<string, unknown>, allowed: readonly stri
   for (const key of Object.keys(value)) if (!allowed.includes(key)) throw new TypeError(`Unknown ${label} field: ${key}`);
 }
 
-function validateBundle(value: unknown): asserts value is EvidenceBundle {
+export type InspectEvidenceOptions = { m1AdmitBoundary?: boolean };
+
+function validateAdmissionExcluded(value: unknown): asserts value is string[] {
+  if (!Array.isArray(value) || value.length === 0) throw new TypeError('fact.admissionExcluded must be a nonempty array');
+  for (const entry of value) {
+    if (typeof entry !== 'string' || !entry.trim()) throw new TypeError('fact.admissionExcluded entries must be nonempty strings');
+  }
+}
+
+function validateBundle(value: unknown, options?: InspectEvidenceOptions): asserts value is EvidenceBundle {
   canonicalize(value);
   if (!isRecord(value)) throw new TypeError('Evidence must be an object');
   exactKeys(value, ['sources', 'facts'], 'evidence');
@@ -65,7 +76,10 @@ function validateBundle(value: unknown): asserts value is EvidenceBundle {
   }
   for (const fact of value.facts) {
     if (!isRecord(fact)) throw new TypeError('Each fact must be an object');
-    exactKeys(fact, ['id', 'sourceId', 'value', 'claimId', 'unit', 'observedAt', 'expiresAt', 'dependsOn'], 'fact');
+    const factKeys = options?.m1AdmitBoundary
+      ? (['id', 'sourceId', 'value', 'claimId', 'unit', 'observedAt', 'expiresAt', 'dependsOn', 'admissionExcluded'] as const)
+      : (['id', 'sourceId', 'value', 'claimId', 'unit', 'observedAt', 'expiresAt', 'dependsOn'] as const);
+    exactKeys(fact, factKeys, 'fact');
     requiredId(fact.id, 'fact.id');
     requiredId(fact.sourceId, 'fact.sourceId');
     if (!Object.hasOwn(fact, 'value')) throw new TypeError('fact.value is required');
@@ -81,14 +95,18 @@ function validateBundle(value: unknown): asserts value is EvidenceBundle {
       for (const id of fact.dependsOn) requiredId(id, 'fact.dependsOn entry');
       if (new Set(fact.dependsOn).size !== fact.dependsOn.length) throw new TypeError('fact.dependsOn contains duplicate references');
     }
+    if ('admissionExcluded' in fact) {
+      if (!options?.m1AdmitBoundary) throw new TypeError('Unknown fact field: admissionExcluded');
+      validateAdmissionExcluded(fact.admissionExcluded);
+    }
   }
 }
 
 /** Checks declared structure, references, time-based availability and contradictions, not source truth. */
-export function inspectEvidence(bundle: EvidenceBundle, asOf: string): EvidenceReport {
+export function inspectEvidence(bundle: EvidenceBundle, asOf: string, options?: InspectEvidenceOptions): EvidenceReport {
   const now = timestamp(asOf, 'asOf');
   const report: EvidenceReport = { asOf, valid: false, issues: [], facts: [], lineage: [], sources: [] };
-  try { validateBundle(bundle); }
+  try { validateBundle(bundle, options); }
   catch (error) {
     report.issues.push({ code: error instanceof EvidenceLimitError ? 'EVIDENCE_LIMIT' : 'MALFORMED_EVIDENCE', severity: 'ERROR', factIds: [], message: error instanceof Error ? error.message : 'Malformed evidence' });
     return report;
@@ -131,6 +149,12 @@ export function inspectEvidence(bundle: EvidenceBundle, asOf: string): EvidenceR
         issue('SOURCE_DIGEST_MISMATCH', 'ERROR', sourceFacts.get(source.id) ?? [], `Content digest mismatch: ${source.id}`);
       }
     } else report.sources.push({ id: source.id, contentStatus: 'REFERENCE_ONLY' });
+  }
+  for (const fact of facts.values()) {
+    if (fact.admissionExcluded?.length) {
+      mark(fact.id, 'MISSING', `ADMISSION_EXCLUDED:${fact.admissionExcluded.join(',')}`);
+      issue('ADMISSION_EXCLUDED', 'UNAVAILABLE', [fact.id], `Admission excluded: ${fact.id}`);
+    }
   }
   for (const fact of facts.values()) {
     report.lineage.push({ factId: fact.id, sourceId: fact.sourceId, dependsOn: [...(fact.dependsOn ?? [])].sort() });

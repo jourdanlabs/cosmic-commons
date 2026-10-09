@@ -7,3 +7,5 @@ export * from "./policy.js";
 export * from "./receipt.js";
 export * from "./inference/index.js";
 export * from "./strict-json.js";
+export * as engines from "./m1/index.js";
+export { evaluateEvidence } from "./m1/evaluate.js";

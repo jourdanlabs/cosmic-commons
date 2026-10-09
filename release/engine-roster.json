@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "commons.engine-roster.v1",
+  "stages": [
+    { "name": "Validate", "milestone": "M1", "status": "M1_REQUIRED" },
+    { "name": "Link", "milestone": "M1", "status": "M1_REQUIRED" },
+    { "name": "Admit", "milestone": "M1", "status": "M1_REQUIRED" },
+    { "name": "Timebox", "milestone": "M1", "status": "M1_REQUIRED" },
+    { "name": "Facts", "milestone": "M1", "status": "M1_REQUIRED" },
+    { "name": "Bound", "milestone": "M2", "status": "NOT_IMPLEMENTED" },
+    { "name": "Stress", "milestone": "M2", "status": "NOT_IMPLEMENTED" },
+    { "name": "Window", "milestone": "M2", "status": "NOT_IMPLEMENTED" },
+    { "name": "Challenge", "milestone": "M2", "status": "NOT_IMPLEMENTED" },
+    { "name": "Gate", "milestone": "M3", "status": "NOT_IMPLEMENTED" },
+    { "name": "Portfolio", "milestone": "M3", "status": "NOT_IMPLEMENTED" },
+    { "name": "Discovery", "milestone": "M4", "status": "ADVISORY_EXISTING" }
+  ]
+}

@@ -117,6 +117,16 @@ file or dangling symlink occupies `.cosmic-embedded-assets` beside the file.
 It does not silently substitute embedded bytes for a real user file.
 
 `CHECKSUMS.sha256` covers the delivered candidate, and `VERIFY-PACKAGE.mjs` checks
-the exact file inventory and bytes. The separate handoff binds the archive hash.
-Check the manifest before installing development tools or regenerating evidence.
-Checksums establish integrity, not a signature or independent factual truth.
+the exact file inventory and bytes against a **clean git clone or release archive**.
+Development trees with untracked files or `npm pack` tarballs must not be used to
+regenerate the manifest; `scripts/regenerate-checksums.mjs` refuses untracked paths
+and inventories `git ls-files` only. Failures print `{"valid":false,"reason":…}` and
+exit 1. The separate handoff binds the archive hash. Check the manifest before
+installing development tools or regenerating evidence. Checksums establish integrity,
+not a signature or independent factual truth.
+
+M1 evidence receipts: `verifyM1ReceiptText` recomputes Validate–Facts and checks
+digest and runtime identity. `valid: true` without a trusted input digest still emits
+`UNANCHORED_SELF_CONSISTENCY_ONLY` in `issues` and `anchoring: UNANCHORED`. That is
+self-consistency under recomputation, not authentication or origin proof. An optional
+trusted input digest parameter anchors `inputDigest` only.

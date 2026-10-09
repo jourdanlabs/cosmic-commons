@@ -1,6 +1,6 @@
 // Copyright 2026 Leland Jourdan II / C&L Strategy
 // SPDX-License-Identifier: Apache-2.0
-import { readdirSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { join, relative, dirname } from 'node:path';
 import { endianness } from 'node:os';
@@ -15,7 +15,20 @@ function treeDigest(directory:string,extension:string):string {
   return sha256(sourceFiles(directory,extension).map(p=>({path:relative(directory,p).split('\\').join('/'),source:readFileSync(p,'utf8')})));
 }
 export function executionRuntime():RuntimeContract {
-  return {implementation:'@cosmic/commons/0.2.2',node:process.versions.node,v8:process.versions.v8,platform:process.platform,architecture:process.arch,endianness:endianness(),sourceDigest:treeDigest(packagePath('src'),'.ts'),codeDigest:treeDigest(root,import.meta.url.endsWith('.ts')?'.ts':'.js')};
+  const srcDir = packagePath('src');
+  const codeExt = import.meta.url.endsWith('.ts') ? '.ts' : '.js';
+  const codeDigest = treeDigest(root, codeExt);
+  const sourceDigest = existsSync(srcDir) ? treeDigest(srcDir, '.ts') : codeDigest;
+  return {
+    implementation: '@cosmic/commons/0.2.2',
+    node: process.versions.node,
+    v8: process.versions.v8,
+    platform: process.platform,
+    architecture: process.arch,
+    endianness: endianness(),
+    sourceDigest,
+    codeDigest,
+  };
 }
 
 /** Separate deployments cannot silently replay each other's policy receipts. */

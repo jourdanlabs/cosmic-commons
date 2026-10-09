@@ -15,7 +15,15 @@ export function exactKeys(value, allowed, label) {
         if (!allowed.includes(key))
             throw new TypeError(`Unknown ${label} field: ${key}`);
 }
-function validateBundle(value) {
+function validateAdmissionExcluded(value) {
+    if (!Array.isArray(value) || value.length === 0)
+        throw new TypeError('fact.admissionExcluded must be a nonempty array');
+    for (const entry of value) {
+        if (typeof entry !== 'string' || !entry.trim())
+            throw new TypeError('fact.admissionExcluded entries must be nonempty strings');
+    }
+}
+function validateBundle(value, options) {
     canonicalize(value);
     if (!isRecord(value))
         throw new TypeError('Evidence must be an object');
@@ -47,7 +55,10 @@ function validateBundle(value) {
     for (const fact of value.facts) {
         if (!isRecord(fact))
             throw new TypeError('Each fact must be an object');
-        exactKeys(fact, ['id', 'sourceId', 'value', 'claimId', 'unit', 'observedAt', 'expiresAt', 'dependsOn'], 'fact');
+        const factKeys = options?.m1AdmitBoundary
+            ? ['id', 'sourceId', 'value', 'claimId', 'unit', 'observedAt', 'expiresAt', 'dependsOn', 'admissionExcluded']
+            : ['id', 'sourceId', 'value', 'claimId', 'unit', 'observedAt', 'expiresAt', 'dependsOn'];
+        exactKeys(fact, factKeys, 'fact');
         requiredId(fact.id, 'fact.id');
         requiredId(fact.sourceId, 'fact.sourceId');
         if (!Object.hasOwn(fact, 'value'))
@@ -71,14 +82,19 @@ function validateBundle(value) {
             if (new Set(fact.dependsOn).size !== fact.dependsOn.length)
                 throw new TypeError('fact.dependsOn contains duplicate references');
         }
+        if ('admissionExcluded' in fact) {
+            if (!options?.m1AdmitBoundary)
+                throw new TypeError('Unknown fact field: admissionExcluded');
+            validateAdmissionExcluded(fact.admissionExcluded);
+        }
     }
 }
 /** Checks declared structure, references, time-based availability and contradictions, not source truth. */
-export function inspectEvidence(bundle, asOf) {
+export function inspectEvidence(bundle, asOf, options) {
     const now = timestamp(asOf, 'asOf');
     const report = { asOf, valid: false, issues: [], facts: [], lineage: [], sources: [] };
     try {
-        validateBundle(bundle);
+        validateBundle(bundle, options);
     }
     catch (error) {
         report.issues.push({ code: error instanceof EvidenceLimitError ? 'EVIDENCE_LIMIT' : 'MALFORMED_EVIDENCE', severity: 'ERROR', factIds: [], message: error instanceof Error ? error.message : 'Malformed evidence' });
@@ -136,6 +152,12 @@ export function inspectEvidence(bundle, asOf) {
         }
         else
             report.sources.push({ id: source.id, contentStatus: 'REFERENCE_ONLY' });
+    }
+    for (const fact of facts.values()) {
+        if (fact.admissionExcluded?.length) {
+            mark(fact.id, 'MISSING', `ADMISSION_EXCLUDED:${fact.admissionExcluded.join(',')}`);
+            issue('ADMISSION_EXCLUDED', 'UNAVAILABLE', [fact.id], `Admission excluded: ${fact.id}`);
+        }
     }
     for (const fact of facts.values()) {
         report.lineage.push({ factId: fact.id, sourceId: fact.sourceId, dependsOn: [...(fact.dependsOn ?? [])].sort() });

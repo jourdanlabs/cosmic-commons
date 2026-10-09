@@ -35,6 +35,8 @@ try {
     rmSync(join(root, 'dist'), {recursive: true, force: true});
     renameSync(temporary, join(root, 'dist'));
     process.stdout.write(`Built ${files(join(root, 'dist')).length} deterministic JavaScript/type files.\n`);
+    const pack = spawnSync(process.execPath, [join(root, 'scripts/build-stage-packages.mjs')], { cwd: root, stdio: 'inherit' });
+    if (pack.status !== 0) process.exitCode = pack.status ?? 1;
   }
 } finally {
   rmSync(temporary, {recursive: true, force: true});

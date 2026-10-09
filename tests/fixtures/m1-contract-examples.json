@@ -1,0 +1,1682 @@
+{
+  "documentType": "PROPOSED_CONTRACT_FIXTURES_NOT_EXECUTED_RESULTS",
+  "status": "Hand-authored examples; expected properties were written by hand, not produced by running the engine.",
+  "contractBasis": "SPEC CHOICE SC-01, SC-03, SC-04 and SC-06 in the main BBB; inherited source object shape must be checked against the selected public core.",
+  "method": "Expectations are manually specified from the proposed contract, not computed by a copied evidence or graph implementation.",
+  "cases": [
+    {
+      "id": "M1-C01",
+      "description": "Complete required evidence; not business approval.",
+      "input": {
+        "snapshot": {
+          "schemaVersion": "commons.evidence-snapshot.v1",
+          "asOf": "2026-10-09T12:00:00.000Z",
+          "items": [
+            {
+              "id": "WORK-A",
+              "priority": 1,
+              "owner": "owner-work-a",
+              "dependsOn": []
+            }
+          ],
+          "sources": [
+            {
+              "id": "SRC-APPROVAL",
+              "content": {
+                "label": "Synthetic approval-source projection"
+              }
+            },
+            {
+              "id": "SRC-EFFORT",
+              "content": {
+                "label": "Synthetic planning-source projection"
+              }
+            }
+          ],
+          "evidence": [
+            {
+              "id": "EV-APPROVAL",
+              "itemId": "WORK-A",
+              "subjectId": "WORK-A",
+              "field": "approval",
+              "issuer": "authority-approval",
+              "sourceId": "SRC-APPROVAL",
+              "observedAt": "2026-10-08T12:00:00.000Z",
+              "expiresAt": "2026-10-10T12:00:00.000Z",
+              "value": true,
+              "dependsOn": []
+            },
+            {
+              "id": "EV-EFFORT",
+              "itemId": "WORK-A",
+              "subjectId": "WORK-A",
+              "field": "effort",
+              "issuer": "authority-planning",
+              "sourceId": "SRC-EFFORT",
+              "observedAt": "2026-10-08T12:00:00.000Z",
+              "expiresAt": "2026-10-10T12:00:00.000Z",
+              "value": 5,
+              "dependsOn": []
+            }
+          ]
+        },
+        "schema": {
+          "schemaVersion": "commons.field-schema.v1",
+          "id": "SCHEMA-SYNTHETIC",
+          "version": "1",
+          "fields": [
+            {
+              "name": "approval",
+              "type": "boolean",
+              "issuerAuthorities": [
+                "authority-approval"
+              ],
+              "required": true,
+              "eligibility": true,
+              "disqualifier": true,
+              "owner": "owner-approval"
+            },
+            {
+              "name": "effort",
+              "type": "integer",
+              "issuerAuthorities": [
+                "authority-planning"
+              ],
+              "required": true,
+              "eligibility": false,
+              "disqualifier": false,
+              "owner": "owner-planning",
+              "unit": "team-day"
+            },
+            {
+              "name": "note",
+              "type": "nonempty-string",
+              "issuerAuthorities": [
+                "authority-context"
+              ],
+              "required": false,
+              "eligibility": false,
+              "disqualifier": false,
+              "owner": "owner-context"
+            }
+          ]
+        },
+        "policy": {
+          "schemaVersion": "commons.m1-policy.v1",
+          "id": "POLICY-SYNTHETIC",
+          "version": "1",
+          "priorityOrder": "ascending"
+        }
+      },
+      "manuallySpecifiedExpectedProperties": [
+        "approval is KNOWN true; effort is KNOWN 5; optional note is UNKNOWN.",
+        "Required coverage is 2 of 2.",
+        "Evidence status COMPLETE; routing disposition null.",
+        "Final decision remains null and NOT_EVALUATED. No BUILD or ALLOW is emitted."
+      ]
+    },
+    {
+      "id": "M1-C02",
+      "description": "One missing required field.",
+      "input": {
+        "snapshot": {
+          "schemaVersion": "commons.evidence-snapshot.v1",
+          "asOf": "2026-10-09T12:00:00.000Z",
+          "items": [
+            {
+              "id": "WORK-A",
+              "priority": 1,
+              "owner": "owner-work-a",
+              "dependsOn": []
+            }
+          ],
+          "sources": [
+            {
+              "id": "SRC-APPROVAL",
+              "content": {
+                "label": "Synthetic approval-source projection"
+              }
+            },
+            {
+              "id": "SRC-EFFORT",
+              "content": {
+                "label": "Synthetic planning-source projection"
+              }
+            }
+          ],
+          "evidence": [
+            {
+              "id": "EV-APPROVAL",
+              "itemId": "WORK-A",
+              "subjectId": "WORK-A",
+              "field": "approval",
+              "issuer": "authority-approval",
+              "sourceId": "SRC-APPROVAL",
+              "observedAt": "2026-10-08T12:00:00.000Z",
+              "expiresAt": "2026-10-10T12:00:00.000Z",
+              "value": true,
+              "dependsOn": []
+            }
+          ]
+        },
+        "schema": {
+          "schemaVersion": "commons.field-schema.v1",
+          "id": "SCHEMA-SYNTHETIC",
+          "version": "1",
+          "fields": [
+            {
+              "name": "approval",
+              "type": "boolean",
+              "issuerAuthorities": [
+                "authority-approval"
+              ],
+              "required": true,
+              "eligibility": true,
+              "disqualifier": true,
+              "owner": "owner-approval"
+            },
+            {
+              "name": "effort",
+              "type": "integer",
+              "issuerAuthorities": [
+                "authority-planning"
+              ],
+              "required": true,
+              "eligibility": false,
+              "disqualifier": false,
+              "owner": "owner-planning",
+              "unit": "team-day"
+            },
+            {
+              "name": "note",
+              "type": "nonempty-string",
+              "issuerAuthorities": [
+                "authority-context"
+              ],
+              "required": false,
+              "eligibility": false,
+              "disqualifier": false,
+              "owner": "owner-context"
+            }
+          ]
+        },
+        "policy": {
+          "schemaVersion": "commons.m1-policy.v1",
+          "id": "POLICY-SYNTHETIC",
+          "version": "1",
+          "priorityOrder": "ascending"
+        }
+      },
+      "manuallySpecifiedExpectedProperties": [
+        "effort is UNKNOWN; approval remains KNOWN.",
+        "Evidence routing is NEEDS_EVIDENCE, addressed to owner-planning with a question naming effort.",
+        "Final decision remains unevaluated."
+      ]
+    },
+    {
+      "id": "M1-C03",
+      "description": "Two current authorized, type-valid integer values disagree.",
+      "input": {
+        "snapshot": {
+          "schemaVersion": "commons.evidence-snapshot.v1",
+          "asOf": "2026-10-09T12:00:00.000Z",
+          "items": [
+            {
+              "id": "WORK-A",
+              "priority": 1,
+              "owner": "owner-work-a",
+              "dependsOn": []
+            }
+          ],
+          "sources": [
+            {
+              "id": "SRC-APPROVAL",
+              "content": {
+                "label": "Synthetic approval-source projection"
+              }
+            },
+            {
+              "id": "SRC-EFFORT",
+              "content": {
+                "label": "Synthetic planning-source projection"
+              }
+            }
+          ],
+          "evidence": [
+            {
+              "id": "EV-APPROVAL",
+              "itemId": "WORK-A",
+              "subjectId": "WORK-A",
+              "field": "approval",
+              "issuer": "authority-approval",
+              "sourceId": "SRC-APPROVAL",
+              "observedAt": "2026-10-08T12:00:00.000Z",
+              "expiresAt": "2026-10-10T12:00:00.000Z",
+              "value": true,
+              "dependsOn": []
+            },
+            {
+              "id": "EV-EFFORT",
+              "itemId": "WORK-A",
+              "subjectId": "WORK-A",
+              "field": "effort",
+              "issuer": "authority-planning",
+              "sourceId": "SRC-EFFORT",
+              "observedAt": "2026-10-08T12:00:00.000Z",
+              "expiresAt": "2026-10-10T12:00:00.000Z",
+              "value": 5,
+              "dependsOn": []
+            },
+            {
+              "id": "EV-EFFORT-OTHER",
+              "itemId": "WORK-A",
+              "subjectId": "WORK-A",
+              "field": "effort",
+              "issuer": "authority-planning",
+              "sourceId": "SRC-EFFORT",
+              "observedAt": "2026-10-08T12:00:00.000Z",
+              "expiresAt": "2026-10-10T12:00:00.000Z",
+              "value": 6,
+              "dependsOn": []
+            }
+          ]
+        },
+        "schema": {
+          "schemaVersion": "commons.field-schema.v1",
+          "id": "SCHEMA-SYNTHETIC",
+          "version": "1",
+          "fields": [
+            {
+              "name": "approval",
+              "type": "boolean",
+              "issuerAuthorities": [
+                "authority-approval"
+              ],
+              "required": true,
+              "eligibility": true,
+              "disqualifier": true,
+              "owner": "owner-approval"
+            },
+            {
+              "name": "effort",
+              "type": "integer",
+              "issuerAuthorities": [
+                "authority-planning"
+              ],
+              "required": true,
+              "eligibility": false,
+              "disqualifier": false,
+              "owner": "owner-planning",
+              "unit": "team-day"
+            },
+            {
+              "name": "note",
+              "type": "nonempty-string",
+              "issuerAuthorities": [
+                "authority-context"
+              ],
+              "required": false,
+              "eligibility": false,
+              "disqualifier": false,
+              "owner": "owner-context"
+            }
+          ]
+        },
+        "policy": {
+          "schemaVersion": "commons.m1-policy.v1",
+          "id": "POLICY-SYNTHETIC",
+          "version": "1",
+          "priorityOrder": "ascending"
+        }
+      },
+      "manuallySpecifiedExpectedProperties": [
+        "effort is CONFLICT, has no selected value, and retains EV-EFFORT and EV-EFFORT-OTHER.",
+        "NEEDS_EVIDENCE routes the conflict question to owner-planning; majority/recency does not select a value."
+      ]
+    },
+    {
+      "id": "M1-C04",
+      "description": "Unauthorized contradictory claim alongside valid support.",
+      "input": {
+        "snapshot": {
+          "schemaVersion": "commons.evidence-snapshot.v1",
+          "asOf": "2026-10-09T12:00:00.000Z",
+          "items": [
+            {
+              "id": "WORK-A",
+              "priority": 1,
+              "owner": "owner-work-a",
+              "dependsOn": []
+            }
+          ],
+          "sources": [
+            {
+              "id": "SRC-APPROVAL",
+              "content": {
+                "label": "Synthetic approval-source projection"
+              }
+            },
+            {
+              "id": "SRC-EFFORT",
+              "content": {
+                "label": "Synthetic planning-source projection"
+              }
+            }
+          ],
+          "evidence": [
+            {
+              "id": "EV-APPROVAL",
+              "itemId": "WORK-A",
+              "subjectId": "WORK-A",
+              "field": "approval",
+              "issuer": "authority-approval",
+              "sourceId": "SRC-APPROVAL",
+              "observedAt": "2026-10-08T12:00:00.000Z",
+              "expiresAt": "2026-10-10T12:00:00.000Z",
+              "value": true,
+              "dependsOn": []
+            },
+            {
+              "id": "EV-EFFORT",
+              "itemId": "WORK-A",
+              "subjectId": "WORK-A",
+              "field": "effort",
+              "issuer": "authority-planning",
+              "sourceId": "SRC-EFFORT",
+              "observedAt": "2026-10-08T12:00:00.000Z",
+              "expiresAt": "2026-10-10T12:00:00.000Z",
+              "value": 5,
+              "dependsOn": []
+            },
+            {
+              "id": "EV-EFFORT-UNAUTHORIZED",
+              "itemId": "WORK-A",
+              "subjectId": "WORK-A",
+              "field": "effort",
+              "issuer": "not-authorized",
+              "sourceId": "SRC-EFFORT",
+              "observedAt": "2026-10-08T12:00:00.000Z",
+              "expiresAt": "2026-10-10T12:00:00.000Z",
+              "value": 9,
+              "dependsOn": []
+            }
+          ]
+        },
+        "schema": {
+          "schemaVersion": "commons.field-schema.v1",
+          "id": "SCHEMA-SYNTHETIC",
+          "version": "1",
+          "fields": [
+            {
+              "name": "approval",
+              "type": "boolean",
+              "issuerAuthorities": [
+                "authority-approval"
+              ],
+              "required": true,
+              "eligibility": true,
+              "disqualifier": true,
+              "owner": "owner-approval"
+            },
+            {
+              "name": "effort",
+              "type": "integer",
+              "issuerAuthorities": [
+                "authority-planning"
+              ],
+              "required": true,
+              "eligibility": false,
+              "disqualifier": false,
+              "owner": "owner-planning",
+              "unit": "team-day"
+            },
+            {
+              "name": "note",
+              "type": "nonempty-string",
+              "issuerAuthorities": [
+                "authority-context"
+              ],
+              "required": false,
+              "eligibility": false,
+              "disqualifier": false,
+              "owner": "owner-context"
+            }
+          ]
+        },
+        "policy": {
+          "schemaVersion": "commons.m1-policy.v1",
+          "id": "POLICY-SYNTHETIC",
+          "version": "1",
+          "priorityOrder": "ascending"
+        }
+      },
+      "manuallySpecifiedExpectedProperties": [
+        "EV-EFFORT-UNAUTHORIZED is excluded with UNAUTHORIZED_ISSUER.",
+        "effort remains KNOWN 5, not CONFLICT, because excluded evidence does not participate in conflict resolution.",
+        "The exclusion action stays visible even though required evidence is complete."
+      ]
+    },
+    {
+      "id": "M1-C05",
+      "description": "Only effort record is from an undeclared issuer.",
+      "input": {
+        "snapshot": {
+          "schemaVersion": "commons.evidence-snapshot.v1",
+          "asOf": "2026-10-09T12:00:00.000Z",
+          "items": [
+            {
+              "id": "WORK-A",
+              "priority": 1,
+              "owner": "owner-work-a",
+              "dependsOn": []
+            }
+          ],
+          "sources": [
+            {
+              "id": "SRC-APPROVAL",
+              "content": {
+                "label": "Synthetic approval-source projection"
+              }
+            },
+            {
+              "id": "SRC-EFFORT",
+              "content": {
+                "label": "Synthetic planning-source projection"
+              }
+            }
+          ],
+          "evidence": [
+            {
+              "id": "EV-APPROVAL",
+              "itemId": "WORK-A",
+              "subjectId": "WORK-A",
+              "field": "approval",
+              "issuer": "authority-approval",
+              "sourceId": "SRC-APPROVAL",
+              "observedAt": "2026-10-08T12:00:00.000Z",
+              "expiresAt": "2026-10-10T12:00:00.000Z",
+              "value": true,
+              "dependsOn": []
+            },
+            {
+              "id": "EV-EFFORT",
+              "itemId": "WORK-A",
+              "subjectId": "WORK-A",
+              "field": "effort",
+              "issuer": "not-authorized",
+              "sourceId": "SRC-EFFORT",
+              "observedAt": "2026-10-08T12:00:00.000Z",
+              "expiresAt": "2026-10-10T12:00:00.000Z",
+              "value": 5,
+              "dependsOn": []
+            }
+          ]
+        },
+        "schema": {
+          "schemaVersion": "commons.field-schema.v1",
+          "id": "SCHEMA-SYNTHETIC",
+          "version": "1",
+          "fields": [
+            {
+              "name": "approval",
+              "type": "boolean",
+              "issuerAuthorities": [
+                "authority-approval"
+              ],
+              "required": true,
+              "eligibility": true,
+              "disqualifier": true,
+              "owner": "owner-approval"
+            },
+            {
+              "name": "effort",
+              "type": "integer",
+              "issuerAuthorities": [
+                "authority-planning"
+              ],
+              "required": true,
+              "eligibility": false,
+              "disqualifier": false,
+              "owner": "owner-planning",
+              "unit": "team-day"
+            },
+            {
+              "name": "note",
+              "type": "nonempty-string",
+              "issuerAuthorities": [
+                "authority-context"
+              ],
+              "required": false,
+              "eligibility": false,
+              "disqualifier": false,
+              "owner": "owner-context"
+            }
+          ]
+        },
+        "policy": {
+          "schemaVersion": "commons.m1-policy.v1",
+          "id": "POLICY-SYNTHETIC",
+          "version": "1",
+          "priorityOrder": "ascending"
+        }
+      },
+      "manuallySpecifiedExpectedProperties": [
+        "EV-EFFORT is excluded with UNAUTHORIZED_ISSUER; effort is UNKNOWN.",
+        "NEEDS_EVIDENCE contains owner-planning and a concrete replacement question."
+      ]
+    },
+    {
+      "id": "M1-C06",
+      "description": "Evidence is attached to WORK-A but declares another subject.",
+      "input": {
+        "snapshot": {
+          "schemaVersion": "commons.evidence-snapshot.v1",
+          "asOf": "2026-10-09T12:00:00.000Z",
+          "items": [
+            {
+              "id": "WORK-A",
+              "priority": 1,
+              "owner": "owner-work-a",
+              "dependsOn": []
+            }
+          ],
+          "sources": [
+            {
+              "id": "SRC-APPROVAL",
+              "content": {
+                "label": "Synthetic approval-source projection"
+              }
+            },
+            {
+              "id": "SRC-EFFORT",
+              "content": {
+                "label": "Synthetic planning-source projection"
+              }
+            }
+          ],
+          "evidence": [
+            {
+              "id": "EV-APPROVAL",
+              "itemId": "WORK-A",
+              "subjectId": "WORK-A",
+              "field": "approval",
+              "issuer": "authority-approval",
+              "sourceId": "SRC-APPROVAL",
+              "observedAt": "2026-10-08T12:00:00.000Z",
+              "expiresAt": "2026-10-10T12:00:00.000Z",
+              "value": true,
+              "dependsOn": []
+            },
+            {
+              "id": "EV-EFFORT",
+              "itemId": "WORK-A",
+              "subjectId": "WORK-B",
+              "field": "effort",
+              "issuer": "authority-planning",
+              "sourceId": "SRC-EFFORT",
+              "observedAt": "2026-10-08T12:00:00.000Z",
+              "expiresAt": "2026-10-10T12:00:00.000Z",
+              "value": 5,
+              "dependsOn": []
+            }
+          ]
+        },
+        "schema": {
+          "schemaVersion": "commons.field-schema.v1",
+          "id": "SCHEMA-SYNTHETIC",
+          "version": "1",
+          "fields": [
+            {
+              "name": "approval",
+              "type": "boolean",
+              "issuerAuthorities": [
+                "authority-approval"
+              ],
+              "required": true,
+              "eligibility": true,
+              "disqualifier": true,
+              "owner": "owner-approval"
+            },
+            {
+              "name": "effort",
+              "type": "integer",
+              "issuerAuthorities": [
+                "authority-planning"
+              ],
+              "required": true,
+              "eligibility": false,
+              "disqualifier": false,
+              "owner": "owner-planning",
+              "unit": "team-day"
+            },
+            {
+              "name": "note",
+              "type": "nonempty-string",
+              "issuerAuthorities": [
+                "authority-context"
+              ],
+              "required": false,
+              "eligibility": false,
+              "disqualifier": false,
+              "owner": "owner-context"
+            }
+          ]
+        },
+        "policy": {
+          "schemaVersion": "commons.m1-policy.v1",
+          "id": "POLICY-SYNTHETIC",
+          "version": "1",
+          "priorityOrder": "ascending"
+        }
+      },
+      "manuallySpecifiedExpectedProperties": [
+        "EV-EFFORT is excluded with WRONG_SUBJECT; its subject is not repaired.",
+        "effort is UNKNOWN with a field-owner replacement question."
+      ]
+    },
+    {
+      "id": "M1-C07",
+      "description": "Expiry exactly at evaluation time.",
+      "input": {
+        "snapshot": {
+          "schemaVersion": "commons.evidence-snapshot.v1",
+          "asOf": "2026-10-09T12:00:00.000Z",
+          "items": [
+            {
+              "id": "WORK-A",
+              "priority": 1,
+              "owner": "owner-work-a",
+              "dependsOn": []
+            }
+          ],
+          "sources": [
+            {
+              "id": "SRC-APPROVAL",
+              "content": {
+                "label": "Synthetic approval-source projection"
+              }
+            },
+            {
+              "id": "SRC-EFFORT",
+              "content": {
+                "label": "Synthetic planning-source projection"
+              }
+            }
+          ],
+          "evidence": [
+            {
+              "id": "EV-APPROVAL",
+              "itemId": "WORK-A",
+              "subjectId": "WORK-A",
+              "field": "approval",
+              "issuer": "authority-approval",
+              "sourceId": "SRC-APPROVAL",
+              "observedAt": "2026-10-08T12:00:00.000Z",
+              "expiresAt": "2026-10-10T12:00:00.000Z",
+              "value": true,
+              "dependsOn": []
+            },
+            {
+              "id": "EV-EFFORT",
+              "itemId": "WORK-A",
+              "subjectId": "WORK-A",
+              "field": "effort",
+              "issuer": "authority-planning",
+              "sourceId": "SRC-EFFORT",
+              "observedAt": "2026-10-08T12:00:00.000Z",
+              "expiresAt": "2026-10-09T12:00:00.000Z",
+              "value": 5,
+              "dependsOn": []
+            }
+          ]
+        },
+        "schema": {
+          "schemaVersion": "commons.field-schema.v1",
+          "id": "SCHEMA-SYNTHETIC",
+          "version": "1",
+          "fields": [
+            {
+              "name": "approval",
+              "type": "boolean",
+              "issuerAuthorities": [
+                "authority-approval"
+              ],
+              "required": true,
+              "eligibility": true,
+              "disqualifier": true,
+              "owner": "owner-approval"
+            },
+            {
+              "name": "effort",
+              "type": "integer",
+              "issuerAuthorities": [
+                "authority-planning"
+              ],
+              "required": true,
+              "eligibility": false,
+              "disqualifier": false,
+              "owner": "owner-planning",
+              "unit": "team-day"
+            },
+            {
+              "name": "note",
+              "type": "nonempty-string",
+              "issuerAuthorities": [
+                "authority-context"
+              ],
+              "required": false,
+              "eligibility": false,
+              "disqualifier": false,
+              "owner": "owner-context"
+            }
+          ]
+        },
+        "policy": {
+          "schemaVersion": "commons.m1-policy.v1",
+          "id": "POLICY-SYNTHETIC",
+          "version": "1",
+          "priorityOrder": "ascending"
+        }
+      },
+      "manuallySpecifiedExpectedProperties": [
+        "EV-EFFORT is EXPIRED at the half-open boundary and excluded; effort is UNKNOWN."
+      ]
+    },
+    {
+      "id": "M1-C08",
+      "description": "Observation exactly at evaluation time.",
+      "input": {
+        "snapshot": {
+          "schemaVersion": "commons.evidence-snapshot.v1",
+          "asOf": "2026-10-09T12:00:00.000Z",
+          "items": [
+            {
+              "id": "WORK-A",
+              "priority": 1,
+              "owner": "owner-work-a",
+              "dependsOn": []
+            }
+          ],
+          "sources": [
+            {
+              "id": "SRC-APPROVAL",
+              "content": {
+                "label": "Synthetic approval-source projection"
+              }
+            },
+            {
+              "id": "SRC-EFFORT",
+              "content": {
+                "label": "Synthetic planning-source projection"
+              }
+            }
+          ],
+          "evidence": [
+            {
+              "id": "EV-APPROVAL",
+              "itemId": "WORK-A",
+              "subjectId": "WORK-A",
+              "field": "approval",
+              "issuer": "authority-approval",
+              "sourceId": "SRC-APPROVAL",
+              "observedAt": "2026-10-08T12:00:00.000Z",
+              "expiresAt": "2026-10-10T12:00:00.000Z",
+              "value": true,
+              "dependsOn": []
+            },
+            {
+              "id": "EV-EFFORT",
+              "itemId": "WORK-A",
+              "subjectId": "WORK-A",
+              "field": "effort",
+              "issuer": "authority-planning",
+              "sourceId": "SRC-EFFORT",
+              "observedAt": "2026-10-09T12:00:00.000Z",
+              "expiresAt": "2026-10-10T12:00:00.000Z",
+              "value": 5,
+              "dependsOn": []
+            }
+          ]
+        },
+        "schema": {
+          "schemaVersion": "commons.field-schema.v1",
+          "id": "SCHEMA-SYNTHETIC",
+          "version": "1",
+          "fields": [
+            {
+              "name": "approval",
+              "type": "boolean",
+              "issuerAuthorities": [
+                "authority-approval"
+              ],
+              "required": true,
+              "eligibility": true,
+              "disqualifier": true,
+              "owner": "owner-approval"
+            },
+            {
+              "name": "effort",
+              "type": "integer",
+              "issuerAuthorities": [
+                "authority-planning"
+              ],
+              "required": true,
+              "eligibility": false,
+              "disqualifier": false,
+              "owner": "owner-planning",
+              "unit": "team-day"
+            },
+            {
+              "name": "note",
+              "type": "nonempty-string",
+              "issuerAuthorities": [
+                "authority-context"
+              ],
+              "required": false,
+              "eligibility": false,
+              "disqualifier": false,
+              "owner": "owner-context"
+            }
+          ]
+        },
+        "policy": {
+          "schemaVersion": "commons.m1-policy.v1",
+          "id": "POLICY-SYNTHETIC",
+          "version": "1",
+          "priorityOrder": "ascending"
+        }
+      },
+      "manuallySpecifiedExpectedProperties": [
+        "EV-EFFORT is CURRENT and remains usable; effort is KNOWN 5."
+      ]
+    },
+    {
+      "id": "M1-C09",
+      "description": "Future observation.",
+      "input": {
+        "snapshot": {
+          "schemaVersion": "commons.evidence-snapshot.v1",
+          "asOf": "2026-10-09T12:00:00.000Z",
+          "items": [
+            {
+              "id": "WORK-A",
+              "priority": 1,
+              "owner": "owner-work-a",
+              "dependsOn": []
+            }
+          ],
+          "sources": [
+            {
+              "id": "SRC-APPROVAL",
+              "content": {
+                "label": "Synthetic approval-source projection"
+              }
+            },
+            {
+              "id": "SRC-EFFORT",
+              "content": {
+                "label": "Synthetic planning-source projection"
+              }
+            }
+          ],
+          "evidence": [
+            {
+              "id": "EV-APPROVAL",
+              "itemId": "WORK-A",
+              "subjectId": "WORK-A",
+              "field": "approval",
+              "issuer": "authority-approval",
+              "sourceId": "SRC-APPROVAL",
+              "observedAt": "2026-10-08T12:00:00.000Z",
+              "expiresAt": "2026-10-10T12:00:00.000Z",
+              "value": true,
+              "dependsOn": []
+            },
+            {
+              "id": "EV-EFFORT",
+              "itemId": "WORK-A",
+              "subjectId": "WORK-A",
+              "field": "effort",
+              "issuer": "authority-planning",
+              "sourceId": "SRC-EFFORT",
+              "observedAt": "2026-10-10T12:00:00.000Z",
+              "expiresAt": "2026-10-11T12:00:00.000Z",
+              "value": 5,
+              "dependsOn": []
+            }
+          ]
+        },
+        "schema": {
+          "schemaVersion": "commons.field-schema.v1",
+          "id": "SCHEMA-SYNTHETIC",
+          "version": "1",
+          "fields": [
+            {
+              "name": "approval",
+              "type": "boolean",
+              "issuerAuthorities": [
+                "authority-approval"
+              ],
+              "required": true,
+              "eligibility": true,
+              "disqualifier": true,
+              "owner": "owner-approval"
+            },
+            {
+              "name": "effort",
+              "type": "integer",
+              "issuerAuthorities": [
+                "authority-planning"
+              ],
+              "required": true,
+              "eligibility": false,
+              "disqualifier": false,
+              "owner": "owner-planning",
+              "unit": "team-day"
+            },
+            {
+              "name": "note",
+              "type": "nonempty-string",
+              "issuerAuthorities": [
+                "authority-context"
+              ],
+              "required": false,
+              "eligibility": false,
+              "disqualifier": false,
+              "owner": "owner-context"
+            }
+          ]
+        },
+        "policy": {
+          "schemaVersion": "commons.m1-policy.v1",
+          "id": "POLICY-SYNTHETIC",
+          "version": "1",
+          "priorityOrder": "ascending"
+        }
+      },
+      "manuallySpecifiedExpectedProperties": [
+        "EV-EFFORT is FUTURE and excluded; no host wall clock changes that result."
+      ]
+    },
+    {
+      "id": "M1-C10",
+      "description": "Missing item dependency is a semantic graph gap.",
+      "input": {
+        "snapshot": {
+          "schemaVersion": "commons.evidence-snapshot.v1",
+          "asOf": "2026-10-09T12:00:00.000Z",
+          "items": [
+            {
+              "id": "WORK-A",
+              "priority": 1,
+              "owner": "owner-work-a",
+              "dependsOn": [
+                "WORK-MISSING"
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "id": "SRC-APPROVAL",
+              "content": {
+                "label": "Synthetic approval-source projection"
+              }
+            },
+            {
+              "id": "SRC-EFFORT",
+              "content": {
+                "label": "Synthetic planning-source projection"
+              }
+            }
+          ],
+          "evidence": [
+            {
+              "id": "EV-APPROVAL",
+              "itemId": "WORK-A",
+              "subjectId": "WORK-A",
+              "field": "approval",
+              "issuer": "authority-approval",
+              "sourceId": "SRC-APPROVAL",
+              "observedAt": "2026-10-08T12:00:00.000Z",
+              "expiresAt": "2026-10-10T12:00:00.000Z",
+              "value": true,
+              "dependsOn": []
+            },
+            {
+              "id": "EV-EFFORT",
+              "itemId": "WORK-A",
+              "subjectId": "WORK-A",
+              "field": "effort",
+              "issuer": "authority-planning",
+              "sourceId": "SRC-EFFORT",
+              "observedAt": "2026-10-08T12:00:00.000Z",
+              "expiresAt": "2026-10-10T12:00:00.000Z",
+              "value": 5,
+              "dependsOn": []
+            }
+          ]
+        },
+        "schema": {
+          "schemaVersion": "commons.field-schema.v1",
+          "id": "SCHEMA-SYNTHETIC",
+          "version": "1",
+          "fields": [
+            {
+              "name": "approval",
+              "type": "boolean",
+              "issuerAuthorities": [
+                "authority-approval"
+              ],
+              "required": true,
+              "eligibility": true,
+              "disqualifier": true,
+              "owner": "owner-approval"
+            },
+            {
+              "name": "effort",
+              "type": "integer",
+              "issuerAuthorities": [
+                "authority-planning"
+              ],
+              "required": true,
+              "eligibility": false,
+              "disqualifier": false,
+              "owner": "owner-planning",
+              "unit": "team-day"
+            },
+            {
+              "name": "note",
+              "type": "nonempty-string",
+              "issuerAuthorities": [
+                "authority-context"
+              ],
+              "required": false,
+              "eligibility": false,
+              "disqualifier": false,
+              "owner": "owner-context"
+            }
+          ]
+        },
+        "policy": {
+          "schemaVersion": "commons.m1-policy.v1",
+          "id": "POLICY-SYNTHETIC",
+          "version": "1",
+          "priorityOrder": "ascending"
+        }
+      },
+      "manuallySpecifiedExpectedProperties": [
+        "Link reports MISSING_DEPENDENCY for WORK-A with WORK-MISSING.",
+        "NEEDS_EVIDENCE routes a graph question to owner-work-a; no edge is silently dropped."
+      ]
+    },
+    {
+      "id": "M1-C11",
+      "description": "Item self-loop.",
+      "input": {
+        "snapshot": {
+          "schemaVersion": "commons.evidence-snapshot.v1",
+          "asOf": "2026-10-09T12:00:00.000Z",
+          "items": [
+            {
+              "id": "WORK-A",
+              "priority": 1,
+              "owner": "owner-work-a",
+              "dependsOn": [
+                "WORK-A"
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "id": "SRC-APPROVAL",
+              "content": {
+                "label": "Synthetic approval-source projection"
+              }
+            },
+            {
+              "id": "SRC-EFFORT",
+              "content": {
+                "label": "Synthetic planning-source projection"
+              }
+            }
+          ],
+          "evidence": [
+            {
+              "id": "EV-APPROVAL",
+              "itemId": "WORK-A",
+              "subjectId": "WORK-A",
+              "field": "approval",
+              "issuer": "authority-approval",
+              "sourceId": "SRC-APPROVAL",
+              "observedAt": "2026-10-08T12:00:00.000Z",
+              "expiresAt": "2026-10-10T12:00:00.000Z",
+              "value": true,
+              "dependsOn": []
+            },
+            {
+              "id": "EV-EFFORT",
+              "itemId": "WORK-A",
+              "subjectId": "WORK-A",
+              "field": "effort",
+              "issuer": "authority-planning",
+              "sourceId": "SRC-EFFORT",
+              "observedAt": "2026-10-08T12:00:00.000Z",
+              "expiresAt": "2026-10-10T12:00:00.000Z",
+              "value": 5,
+              "dependsOn": []
+            }
+          ]
+        },
+        "schema": {
+          "schemaVersion": "commons.field-schema.v1",
+          "id": "SCHEMA-SYNTHETIC",
+          "version": "1",
+          "fields": [
+            {
+              "name": "approval",
+              "type": "boolean",
+              "issuerAuthorities": [
+                "authority-approval"
+              ],
+              "required": true,
+              "eligibility": true,
+              "disqualifier": true,
+              "owner": "owner-approval"
+            },
+            {
+              "name": "effort",
+              "type": "integer",
+              "issuerAuthorities": [
+                "authority-planning"
+              ],
+              "required": true,
+              "eligibility": false,
+              "disqualifier": false,
+              "owner": "owner-planning",
+              "unit": "team-day"
+            },
+            {
+              "name": "note",
+              "type": "nonempty-string",
+              "issuerAuthorities": [
+                "authority-context"
+              ],
+              "required": false,
+              "eligibility": false,
+              "disqualifier": false,
+              "owner": "owner-context"
+            }
+          ]
+        },
+        "policy": {
+          "schemaVersion": "commons.m1-policy.v1",
+          "id": "POLICY-SYNTHETIC",
+          "version": "1",
+          "priorityOrder": "ascending"
+        }
+      },
+      "manuallySpecifiedExpectedProperties": [
+        "Link reports DEPENDENCY_CYCLE for WORK-A, including the self-loop.",
+        "The item has a routed graph question and no final business decision."
+      ]
+    },
+    {
+      "id": "M1-C12",
+      "description": "Known false disqualifier with another missing required field.",
+      "input": {
+        "snapshot": {
+          "schemaVersion": "commons.evidence-snapshot.v1",
+          "asOf": "2026-10-09T12:00:00.000Z",
+          "items": [
+            {
+              "id": "WORK-A",
+              "priority": 1,
+              "owner": "owner-work-a",
+              "dependsOn": []
+            }
+          ],
+          "sources": [
+            {
+              "id": "SRC-APPROVAL",
+              "content": {
+                "label": "Synthetic approval-source projection"
+              }
+            },
+            {
+              "id": "SRC-EFFORT",
+              "content": {
+                "label": "Synthetic planning-source projection"
+              }
+            }
+          ],
+          "evidence": [
+            {
+              "id": "EV-APPROVAL",
+              "itemId": "WORK-A",
+              "subjectId": "WORK-A",
+              "field": "approval",
+              "issuer": "authority-approval",
+              "sourceId": "SRC-APPROVAL",
+              "observedAt": "2026-10-08T12:00:00.000Z",
+              "expiresAt": "2026-10-10T12:00:00.000Z",
+              "value": false,
+              "dependsOn": []
+            }
+          ]
+        },
+        "schema": {
+          "schemaVersion": "commons.field-schema.v1",
+          "id": "SCHEMA-SYNTHETIC",
+          "version": "1",
+          "fields": [
+            {
+              "name": "approval",
+              "type": "boolean",
+              "issuerAuthorities": [
+                "authority-approval"
+              ],
+              "required": true,
+              "eligibility": true,
+              "disqualifier": true,
+              "owner": "owner-approval"
+            },
+            {
+              "name": "effort",
+              "type": "integer",
+              "issuerAuthorities": [
+                "authority-planning"
+              ],
+              "required": true,
+              "eligibility": false,
+              "disqualifier": false,
+              "owner": "owner-planning",
+              "unit": "team-day"
+            },
+            {
+              "name": "note",
+              "type": "nonempty-string",
+              "issuerAuthorities": [
+                "authority-context"
+              ],
+              "required": false,
+              "eligibility": false,
+              "disqualifier": false,
+              "owner": "owner-context"
+            }
+          ]
+        },
+        "policy": {
+          "schemaVersion": "commons.m1-policy.v1",
+          "id": "POLICY-SYNTHETIC",
+          "version": "1",
+          "priorityOrder": "ascending"
+        }
+      },
+      "manuallySpecifiedExpectedProperties": [
+        "approval is KNOWN false and preserved; effort is UNKNOWN.",
+        "M1 evidence routing asks for missing effort, but finalDecision stays null / NOT_EVALUATED.",
+        "This fixture must not claim the eventual M3 business decision is NEEDS_EVIDENCE; full REJECT precedence is deferred."
+      ]
+    },
+    {
+      "id": "M1-C13",
+      "description": "String value for a declared integer is malformed typed input.",
+      "input": {
+        "snapshot": {
+          "schemaVersion": "commons.evidence-snapshot.v1",
+          "asOf": "2026-10-09T12:00:00.000Z",
+          "items": [
+            {
+              "id": "WORK-A",
+              "priority": 1,
+              "owner": "owner-work-a",
+              "dependsOn": []
+            }
+          ],
+          "sources": [
+            {
+              "id": "SRC-APPROVAL",
+              "content": {
+                "label": "Synthetic approval-source projection"
+              }
+            },
+            {
+              "id": "SRC-EFFORT",
+              "content": {
+                "label": "Synthetic planning-source projection"
+              }
+            }
+          ],
+          "evidence": [
+            {
+              "id": "EV-APPROVAL",
+              "itemId": "WORK-A",
+              "subjectId": "WORK-A",
+              "field": "approval",
+              "issuer": "authority-approval",
+              "sourceId": "SRC-APPROVAL",
+              "observedAt": "2026-10-08T12:00:00.000Z",
+              "expiresAt": "2026-10-10T12:00:00.000Z",
+              "value": true,
+              "dependsOn": []
+            },
+            {
+              "id": "EV-EFFORT",
+              "itemId": "WORK-A",
+              "subjectId": "WORK-A",
+              "field": "effort",
+              "issuer": "authority-planning",
+              "sourceId": "SRC-EFFORT",
+              "observedAt": "2026-10-08T12:00:00.000Z",
+              "expiresAt": "2026-10-10T12:00:00.000Z",
+              "value": "5",
+              "dependsOn": []
+            }
+          ]
+        },
+        "schema": {
+          "schemaVersion": "commons.field-schema.v1",
+          "id": "SCHEMA-SYNTHETIC",
+          "version": "1",
+          "fields": [
+            {
+              "name": "approval",
+              "type": "boolean",
+              "issuerAuthorities": [
+                "authority-approval"
+              ],
+              "required": true,
+              "eligibility": true,
+              "disqualifier": true,
+              "owner": "owner-approval"
+            },
+            {
+              "name": "effort",
+              "type": "integer",
+              "issuerAuthorities": [
+                "authority-planning"
+              ],
+              "required": true,
+              "eligibility": false,
+              "disqualifier": false,
+              "owner": "owner-planning",
+              "unit": "team-day"
+            },
+            {
+              "name": "note",
+              "type": "nonempty-string",
+              "issuerAuthorities": [
+                "authority-context"
+              ],
+              "required": false,
+              "eligibility": false,
+              "disqualifier": false,
+              "owner": "owner-context"
+            }
+          ]
+        },
+        "policy": {
+          "schemaVersion": "commons.m1-policy.v1",
+          "id": "POLICY-SYNTHETIC",
+          "version": "1",
+          "priorityOrder": "ascending"
+        }
+      },
+      "manuallySpecifiedExpectedProperties": [
+        "INVALID_INPUT before semantic stages; no public Facts result or business decision.",
+        "The parser/validator does not coerce the string to integer 5."
+      ]
+    },
+    {
+      "id": "M1-C14",
+      "description": "A current authorized claim depends on excluded evidence.",
+      "input": {
+        "snapshot": {
+          "schemaVersion": "commons.evidence-snapshot.v1",
+          "asOf": "2026-10-09T12:00:00.000Z",
+          "items": [
+            {
+              "id": "WORK-A",
+              "priority": 1,
+              "owner": "owner-work-a",
+              "dependsOn": []
+            }
+          ],
+          "sources": [
+            {
+              "id": "SRC-APPROVAL",
+              "content": {
+                "label": "Synthetic approval-source projection"
+              }
+            },
+            {
+              "id": "SRC-EFFORT",
+              "content": {
+                "label": "Synthetic planning-source projection"
+              }
+            },
+            {
+              "id": "SRC-NOTE",
+              "content": {
+                "label": "Synthetic prerequisite-source projection"
+              }
+            }
+          ],
+          "evidence": [
+            {
+              "id": "EV-APPROVAL",
+              "itemId": "WORK-A",
+              "subjectId": "WORK-A",
+              "field": "approval",
+              "issuer": "authority-approval",
+              "sourceId": "SRC-APPROVAL",
+              "observedAt": "2026-10-08T12:00:00.000Z",
+              "expiresAt": "2026-10-10T12:00:00.000Z",
+              "value": true,
+              "dependsOn": []
+            },
+            {
+              "id": "EV-EFFORT",
+              "itemId": "WORK-A",
+              "subjectId": "WORK-A",
+              "field": "effort",
+              "issuer": "authority-planning",
+              "sourceId": "SRC-EFFORT",
+              "observedAt": "2026-10-08T12:00:00.000Z",
+              "expiresAt": "2026-10-10T12:00:00.000Z",
+              "value": 5,
+              "dependsOn": [
+                "EV-PREREQUISITE"
+              ]
+            },
+            {
+              "id": "EV-PREREQUISITE",
+              "itemId": "WORK-A",
+              "subjectId": "WORK-A",
+              "field": "note",
+              "issuer": "not-authorized",
+              "sourceId": "SRC-NOTE",
+              "observedAt": "2026-10-08T12:00:00.000Z",
+              "expiresAt": "2026-10-10T12:00:00.000Z",
+              "value": "Prerequisite declaration",
+              "dependsOn": []
+            }
+          ]
+        },
+        "schema": {
+          "schemaVersion": "commons.field-schema.v1",
+          "id": "SCHEMA-SYNTHETIC",
+          "version": "1",
+          "fields": [
+            {
+              "name": "approval",
+              "type": "boolean",
+              "issuerAuthorities": [
+                "authority-approval"
+              ],
+              "required": true,
+              "eligibility": true,
+              "disqualifier": true,
+              "owner": "owner-approval"
+            },
+            {
+              "name": "effort",
+              "type": "integer",
+              "issuerAuthorities": [
+                "authority-planning"
+              ],
+              "required": true,
+              "eligibility": false,
+              "disqualifier": false,
+              "owner": "owner-planning",
+              "unit": "team-day"
+            },
+            {
+              "name": "note",
+              "type": "nonempty-string",
+              "issuerAuthorities": [
+                "authority-context"
+              ],
+              "required": false,
+              "eligibility": false,
+              "disqualifier": false,
+              "owner": "owner-context"
+            }
+          ]
+        },
+        "policy": {
+          "schemaVersion": "commons.m1-policy.v1",
+          "id": "POLICY-SYNTHETIC",
+          "version": "1",
+          "priorityOrder": "ascending"
+        }
+      },
+      "manuallySpecifiedExpectedProperties": [
+        "EV-PREREQUISITE is excluded with UNAUTHORIZED_ISSUER.",
+        "EV-EFFORT remains time-CURRENT but is unavailable through its prerequisite; effort is UNKNOWN.",
+        "The dependency and underlying exclusion survive in the trace; filtering must not resurrect the child."
+      ]
+    },
+    {
+      "id": "M1-C15",
+      "description": "No required fields: coverage is a count, not confidence.",
+      "input": {
+        "snapshot": {
+          "schemaVersion": "commons.evidence-snapshot.v1",
+          "asOf": "2026-10-09T12:00:00.000Z",
+          "items": [
+            {
+              "id": "WORK-A",
+              "priority": 1,
+              "owner": "owner-work-a",
+              "dependsOn": []
+            }
+          ],
+          "sources": [
+            {
+              "id": "SRC-APPROVAL",
+              "content": {
+                "label": "Synthetic approval-source projection"
+              }
+            },
+            {
+              "id": "SRC-EFFORT",
+              "content": {
+                "label": "Synthetic planning-source projection"
+              }
+            }
+          ],
+          "evidence": [
+            {
+              "id": "EV-APPROVAL",
+              "itemId": "WORK-A",
+              "subjectId": "WORK-A",
+              "field": "approval",
+              "issuer": "authority-approval",
+              "sourceId": "SRC-APPROVAL",
+              "observedAt": "2026-10-08T12:00:00.000Z",
+              "expiresAt": "2026-10-10T12:00:00.000Z",
+              "value": true,
+              "dependsOn": []
+            },
+            {
+              "id": "EV-EFFORT",
+              "itemId": "WORK-A",
+              "subjectId": "WORK-A",
+              "field": "effort",
+              "issuer": "authority-planning",
+              "sourceId": "SRC-EFFORT",
+              "observedAt": "2026-10-08T12:00:00.000Z",
+              "expiresAt": "2026-10-10T12:00:00.000Z",
+              "value": 5,
+              "dependsOn": []
+            }
+          ]
+        },
+        "schema": {
+          "schemaVersion": "commons.field-schema.v1",
+          "id": "SCHEMA-SYNTHETIC",
+          "version": "1",
+          "fields": [
+            {
+              "name": "approval",
+              "type": "boolean",
+              "issuerAuthorities": [
+                "authority-approval"
+              ],
+              "required": false,
+              "eligibility": false,
+              "disqualifier": true,
+              "owner": "owner-approval"
+            },
+            {
+              "name": "effort",
+              "type": "integer",
+              "issuerAuthorities": [
+                "authority-planning"
+              ],
+              "required": false,
+              "eligibility": false,
+              "disqualifier": false,
+              "owner": "owner-planning",
+              "unit": "team-day"
+            },
+            {
+              "name": "note",
+              "type": "nonempty-string",
+              "issuerAuthorities": [
+                "authority-context"
+              ],
+              "required": false,
+              "eligibility": false,
+              "disqualifier": false,
+              "owner": "owner-context"
+            }
+          ]
+        },
+        "policy": {
+          "schemaVersion": "commons.m1-policy.v1",
+          "id": "POLICY-SYNTHETIC",
+          "version": "1",
+          "priorityOrder": "ascending"
+        }
+      },
+      "manuallySpecifiedExpectedProperties": [
+        "Coverage counts are 0 of 0; no percentage, confidence, division by zero or NaN is manufactured.",
+        "Final business decision remains unevaluated."
+      ]
+    }
+  ],
+  "rawTextCases": [
+    {
+      "id": "M1-C16",
+      "description": "Duplicate raw JSON key must be observable before a normal JSON parser collapses it.",
+      "snapshotText": "{\"schemaVersion\":\"commons.evidence-snapshot.v1\",\"asOf\":\"2026-10-09T11:00:00.000Z\",\"asOf\":\"2026-10-09T12:00:00.000Z\",\"items\":[{\"id\":\"WORK-A\",\"priority\":1,\"owner\":\"owner-work-a\",\"dependsOn\":[]}],\"sources\":[{\"id\":\"SRC-APPROVAL\",\"content\":{\"label\":\"Synthetic approval-source projection\"}},{\"id\":\"SRC-EFFORT\",\"content\":{\"label\":\"Synthetic planning-source projection\"}}],\"evidence\":[{\"id\":\"EV-APPROVAL\",\"itemId\":\"WORK-A\",\"subjectId\":\"WORK-A\",\"field\":\"approval\",\"issuer\":\"authority-approval\",\"sourceId\":\"SRC-APPROVAL\",\"observedAt\":\"2026-10-08T12:00:00.000Z\",\"expiresAt\":\"2026-10-10T12:00:00.000Z\",\"value\":true,\"dependsOn\":[]},{\"id\":\"EV-EFFORT\",\"itemId\":\"WORK-A\",\"subjectId\":\"WORK-A\",\"field\":\"effort\",\"issuer\":\"authority-planning\",\"sourceId\":\"SRC-EFFORT\",\"observedAt\":\"2026-10-08T12:00:00.000Z\",\"expiresAt\":\"2026-10-10T12:00:00.000Z\",\"value\":5,\"dependsOn\":[]}]}",
+      "schemaText": "{\"schemaVersion\": \"commons.field-schema.v1\", \"id\": \"SCHEMA-SYNTHETIC\", \"version\": \"1\", \"fields\": [{\"name\": \"approval\", \"type\": \"boolean\", \"issuerAuthorities\": [\"authority-approval\"], \"required\": true, \"eligibility\": true, \"disqualifier\": true, \"owner\": \"owner-approval\"}, {\"name\": \"effort\", \"type\": \"integer\", \"issuerAuthorities\": [\"authority-planning\"], \"required\": true, \"eligibility\": false, \"disqualifier\": false, \"owner\": \"owner-planning\", \"unit\": \"team-day\"}, {\"name\": \"note\", \"type\": \"nonempty-string\", \"issuerAuthorities\": [\"authority-context\"], \"required\": false, \"eligibility\": false, \"disqualifier\": false, \"owner\": \"owner-context\"}]}",
+      "policyText": "{\"schemaVersion\": \"commons.m1-policy.v1\", \"id\": \"POLICY-SYNTHETIC\", \"version\": \"1\", \"priorityOrder\": \"ascending\"}",
+      "manuallySpecifiedExpectedProperties": [
+        "INVALID_INPUT retaining the core duplicate-key cause; no successful M1 receipt."
+      ]
+    }
+  ]
+}

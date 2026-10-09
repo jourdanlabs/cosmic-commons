@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "commons.release-profile.v1",
+  "profileId": "m1-review",
+  "requiredStages": ["Validate", "Link", "Admit", "Timebox", "Facts"],
+  "fullReleaseBlocked": true,
+  "packages": {
+    "Validate": "@cosmic/commons-validate",
+    "Link": "@cosmic/commons-link",
+    "Admit": "@cosmic/commons-admit",
+    "Timebox": "@cosmic/commons-timebox",
+    "Facts": "@cosmic/commons-facts",
+    "Commons": "@cosmic/commons"
+  }
+}

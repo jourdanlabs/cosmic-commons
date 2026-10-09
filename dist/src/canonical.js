@@ -4,23 +4,25 @@ import { createHash } from 'node:crypto';
 export const CANONICAL_MAX_NODES = 100_000;
 export const CANONICAL_MAX_BYTES = 2_000_000;
 /** Strict canonical JSON v1: UTF-16 key order, JSON number format, no coercions. */
-export function canonicalize(value) {
+export function canonicalize(value, budget = {}) {
+    const maxNodes = budget.maxNodes ?? CANONICAL_MAX_NODES;
+    const maxBytes = budget.maxBytes ?? CANONICAL_MAX_BYTES;
     const active = new Set();
     let nodes = 0;
     let bytes = 0;
     const take = (text) => {
         bytes += Buffer.byteLength(text, 'utf8');
-        if (bytes > CANONICAL_MAX_BYTES)
-            throw new RangeError(`JSON_BYTE_LIMIT: canonical JSON exceeds ${CANONICAL_MAX_BYTES} UTF-8 bytes`);
+        if (bytes > maxBytes)
+            throw new RangeError(`JSON_BYTE_LIMIT: canonical JSON exceeds ${maxBytes} UTF-8 bytes`);
         return text;
     };
     const quote = (text) => {
-        if (text.length > CANONICAL_MAX_BYTES)
+        if (text.length > maxBytes)
             throw new RangeError('JSON_BYTE_LIMIT: string exceeds the JSON byte budget');
         return take(JSON.stringify(text));
     };
     const visit = (item, path, depth) => {
-        if (++nodes > CANONICAL_MAX_NODES || depth > 100)
+        if (++nodes > maxNodes || depth > 100)
             throw new TypeError(`JSON_LIMIT at ${path}`);
         if (item === null)
             return take('null');

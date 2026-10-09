@@ -1,0 +1,17 @@
+{
+  "name": "@cosmic/commons-admit",
+  "version": "0.3.0-m1-candidate.0",
+  "type": "module",
+  "license": "Apache-2.0",
+  "exports": {
+    ".": "./index.mjs"
+  },
+  "dependencies": {},
+  "files": [
+    "index.mjs",
+    "dist/stage.mjs",
+    "LICENSE",
+    "README.md",
+    "smoke.test.mjs"
+  ]
+}

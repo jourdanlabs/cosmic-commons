@@ -1,7 +1,7 @@
 {
   "name": "@cosmic/commons",
-  "version": "0.2.2",
-  "description": "Local deterministic reasoning, evidence policies, and independently replayable receipts.",
+  "version": "0.3.0-m1-candidate.0",
+  "description": "COMMONS M1 candidate: deterministic evidence stages (Validate–Facts) over frozen 0.2.2 core.",
   "type": "module",
   "private": false,
   "license": "Apache-2.0",
@@ -17,6 +17,10 @@
     "./policy": {
       "types": "./dist/src/policy.d.ts",
       "import": "./dist/src/policy.js"
+    },
+    "./engines": {
+      "types": "./dist/src/m1/index.d.ts",
+      "import": "./dist/src/m1/index.js"
     }
   },
   "bin": {
@@ -35,7 +39,7 @@
     "demo": "node bin/cosmic.mjs demo",
     "examples": "node bin/cosmic.mjs examples",
     "bundle": "node scripts/build-bundle.mjs",
-    "bundle:check": "node scripts/build-bundle.mjs --check"
+    "bundle:check": "node scripts/build-bundle.mjs --check && node scripts/build-stage-packages.mjs --check"
   },
   "devDependencies": {
     "@types/node": "20.19.0",

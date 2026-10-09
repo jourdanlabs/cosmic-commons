@@ -1,0 +1,18 @@
+{
+  "name": "@cosmic/commons-m1-facade",
+  "version": "0.3.0-m1-candidate.0",
+  "type": "module",
+  "license": "Apache-2.0",
+  "exports": {
+    ".": "./index.mjs",
+    "./engines": "./engines.mjs"
+  },
+  "dependencies": {},
+  "files": [
+    "index.mjs",
+    "engines.mjs",
+    "dist/stage.mjs",
+    "LICENSE",
+    "README.md"
+  ]
+}

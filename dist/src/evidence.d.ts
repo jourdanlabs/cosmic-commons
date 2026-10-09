@@ -15,6 +15,8 @@ export interface EvidenceFact {
     observedAt?: string;
     expiresAt?: string;
     dependsOn?: string[];
+    /** M1 Admit: fact excluded at boundary but retained for dependency resolution. */
+    admissionExcluded?: string[];
 }
 export interface EvidenceBundle {
     sources: EvidenceSource[];
@@ -56,5 +58,8 @@ export declare const EVIDENCE_LIMITS: Readonly<{
 }>;
 export declare function requiredId(value: unknown, label: string): asserts value is string;
 export declare function exactKeys(value: Record<string, unknown>, allowed: readonly string[], label: string): void;
+export type InspectEvidenceOptions = {
+    m1AdmitBoundary?: boolean;
+};
 /** Checks declared structure, references, time-based availability and contradictions, not source truth. */
-export declare function inspectEvidence(bundle: EvidenceBundle, asOf: string): EvidenceReport;
+export declare function inspectEvidence(bundle: EvidenceBundle, asOf: string, options?: InspectEvidenceOptions): EvidenceReport;

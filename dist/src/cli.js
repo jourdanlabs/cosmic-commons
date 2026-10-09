@@ -91,7 +91,17 @@ export async function main(args) {
             return;
         }
         const directory = packagePath('dist', 'tests');
-        const files = readdirSync(directory).filter(f => f.endsWith('.test.js')).sort().map(f => join(directory, f));
+        function collectTests(dir) {
+            return readdirSync(dir, { withFileTypes: true }).flatMap(entry => {
+                const path = join(dir, entry.name);
+                if (entry.isDirectory())
+                    return collectTests(path);
+                if (entry.isFile() && entry.name.endsWith('.test.js'))
+                    return [path];
+                return [];
+            }).sort();
+        }
+        const files = collectTests(directory);
         if (!files.length)
             throw new Error('No compiled tests found; rebuild with npm ci && npm run build');
         const run = spawnSync(process.execPath, ['--test', '--test-reporter=tap', ...files], { cwd: packageRoot, stdio: 'inherit' });

@@ -7,22 +7,29 @@ export type JsonValue = JsonPrimitive | JsonValue[] | { [key: string]: JsonValue
 export const CANONICAL_MAX_NODES = 100_000;
 export const CANONICAL_MAX_BYTES = 2_000_000;
 
+export interface CanonicalBudget {
+  maxNodes?: number;
+  maxBytes?: number;
+}
+
 /** Strict canonical JSON v1: UTF-16 key order, JSON number format, no coercions. */
-export function canonicalize(value: unknown): string {
+export function canonicalize(value: unknown, budget: CanonicalBudget = {}): string {
+  const maxNodes = budget.maxNodes ?? CANONICAL_MAX_NODES;
+  const maxBytes = budget.maxBytes ?? CANONICAL_MAX_BYTES;
   const active = new Set<object>();
   let nodes = 0;
   let bytes = 0;
   const take = (text: string): string => {
     bytes += Buffer.byteLength(text, 'utf8');
-    if (bytes > CANONICAL_MAX_BYTES) throw new RangeError(`JSON_BYTE_LIMIT: canonical JSON exceeds ${CANONICAL_MAX_BYTES} UTF-8 bytes`);
+    if (bytes > maxBytes) throw new RangeError(`JSON_BYTE_LIMIT: canonical JSON exceeds ${maxBytes} UTF-8 bytes`);
     return text;
   };
   const quote = (text: string): string => {
-    if (text.length > CANONICAL_MAX_BYTES) throw new RangeError('JSON_BYTE_LIMIT: string exceeds the JSON byte budget');
+    if (text.length > maxBytes) throw new RangeError('JSON_BYTE_LIMIT: string exceeds the JSON byte budget');
     return take(JSON.stringify(text));
   };
   const visit = (item: unknown, path: string, depth: number): string => {
-    if (++nodes > CANONICAL_MAX_NODES || depth > 100) throw new TypeError(`JSON_LIMIT at ${path}`);
+    if (++nodes > maxNodes || depth > 100) throw new TypeError(`JSON_LIMIT at ${path}`);
     if (item === null) return take('null');
     if (typeof item === 'string') {
       if (!item.isWellFormed()) throw new TypeError(`INVALID_UNICODE at ${path}`);

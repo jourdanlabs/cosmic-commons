@@ -4,9 +4,10 @@
   "target": "node20",
   "format": "esm",
   "bundle": "cosmic-commons.mjs",
-  "bundleSha256": "76716bd3de1a96cf0d4c739a53009fb541e36a1c3c159c4bae25919b91bfceb7",
-  "bundleBytes": 434803,
+  "bundleSha256": "f5bcb985cd68f5915ae919144ff9b7f7f8e05911678959bdfffddf3b5fb89079",
+  "bundleBytes": 631837,
   "embeddedCompiledTestFiles": [
+    "dist/tests/evidence-admission-excluded-022.test.js",
     "dist/tests/evidence.test.js",
     "dist/tests/inference-adequacy-adversarial.test.js",
     "dist/tests/inference-scope.test.js",
@@ -14,12 +15,19 @@
     "dist/tests/ingress.test.js",
     "dist/tests/integration-adversarial.test.js",
     "dist/tests/integration.test.js",
+    "dist/tests/m1/m1-contract-examples.test.js",
+    "dist/tests/m1/m1-facade-offline.test.js",
+    "dist/tests/m1/m1-package-consumer.test.js",
+    "dist/tests/m1/m1-receipt-limits.test.js",
+    "dist/tests/m1/m1-replay-oracles.test.js",
+    "dist/tests/m1/m1-stages.test.js",
     "dist/tests/numeric-json.test.js",
     "dist/tests/policy.test.js",
     "dist/tests/receipt-budget.test.js",
     "dist/tests/receipt.test.js",
     "dist/tests/regression-receipts.test.js",
-    "dist/tests/strict-json.test.js"
+    "dist/tests/strict-json.test.js",
+    "dist/tests/verify-package-git.test.js"
   ],
   "replacedCompiledTestFiles": [
     "dist/tests/portable.test.js"
@@ -28,18 +36,18 @@
   "inputFiles": [
     {
       "path": "dist/src/canonical.js",
-      "bytes": 5712,
-      "sha256": "a90193452703b75717843f50a153eaf49ebe63ed6f91c04ca1380810444a0689"
+      "bytes": 5803,
+      "sha256": "7c184e74f07546205e084a753d6f48f0c5e701b127762a9063a990db866864b2"
     },
     {
       "path": "dist/src/cli.js",
-      "bytes": 5550,
-      "sha256": "af7049aaf839361a984ea9f3b5110a7aebcd57725a2bc4cf3aa18d72d40369c8"
+      "bytes": 5902,
+      "sha256": "f58442d78bcb3a3260597cc874c35d6a63aece0b01dc920bd8a0998b90f560f7"
     },
     {
       "path": "dist/src/evidence.js",
-      "bytes": 12442,
-      "sha256": "6b37c062486f97b39fa16e44ae587be0b185ba7301eebe34e5e3f184f97ed20e"
+      "bytes": 13568,
+      "sha256": "7b04951e894ce431c98305421000045f2e0a0b3e9b6762e46556a6576f728010"
     },
     {
       "path": "dist/src/examples.js",
@@ -48,8 +56,8 @@
     },
     {
       "path": "dist/src/index.js",
-      "bytes": 310,
-      "sha256": "c93380d094ef5dcf707eff2585ad38a6a14d21ace63927c4eab88ad5bf3eafb8"
+      "bytes": 405,
+      "sha256": "961e5591b8ea7b9617077648a2c8eae495fcb263a8c9c35e08ae9f682f6c33a2"
     },
     {
       "path": "dist/src/inference/adequacy.js",
@@ -82,6 +90,66 @@
       "sha256": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881"
     },
     {
+      "path": "dist/src/m1/admit.js",
+      "bytes": 3559,
+      "sha256": "015fadff050a3de18a8106146d79f8e57ef9b74f104040b2a059635bdbc88ed6"
+    },
+    {
+      "path": "dist/src/m1/claim-key.js",
+      "bytes": 690,
+      "sha256": "d1aad7e411af4ec0f75fbe1afa47a2f0dee14fe84b3cb93292f91f010125bb5d"
+    },
+    {
+      "path": "dist/src/m1/errors.js",
+      "bytes": 831,
+      "sha256": "9f65c316880f96af9495be5f227824164a4532ba797f9bf6b6c9f9e06e63d5d8"
+    },
+    {
+      "path": "dist/src/m1/evaluate.js",
+      "bytes": 3656,
+      "sha256": "e7d5f587edb7148e6cef22b223fc4ee72bdb2af77fac590ba20699993f7fe589"
+    },
+    {
+      "path": "dist/src/m1/facts.js",
+      "bytes": 3311,
+      "sha256": "fa3281bfd4a9a2590d6dcc4e170a6014df78bac371631726bbfc1f8783563259"
+    },
+    {
+      "path": "dist/src/m1/index.js",
+      "bytes": 395,
+      "sha256": "08d5fd972a7d0aa24cc0177911421a0a71af1b38df8bac5d4329b50f8fd57c1c"
+    },
+    {
+      "path": "dist/src/m1/link.js",
+      "bytes": 3514,
+      "sha256": "2b73cb20f0e6c17e38ee238280d2eaf34b792f79ad80b01ea5cc8675b91a5851"
+    },
+    {
+      "path": "dist/src/m1/receipt.js",
+      "bytes": 5520,
+      "sha256": "c2616d01286cf6a0ddc92e19879c1638002d9da4ab8db901b0c90851ce20bb9e"
+    },
+    {
+      "path": "dist/src/m1/replay.js",
+      "bytes": 3446,
+      "sha256": "49d208d070cbcc298e8894097eae2b7b63d7fa4b80f67e8c8ccaefe74363bd52"
+    },
+    {
+      "path": "dist/src/m1/timebox.js",
+      "bytes": 715,
+      "sha256": "0a04632f21914860660fa12dc75b4f3b45386fd3e04340030d0794a75025d4f2"
+    },
+    {
+      "path": "dist/src/m1/typed-value.js",
+      "bytes": 1741,
+      "sha256": "64f993a7a4aa7e22938123f4b2d77b4c2cef372a5408c59dea3ff30b16f348d2"
+    },
+    {
+      "path": "dist/src/m1/validate.js",
+      "bytes": 13244,
+      "sha256": "c871eaa3c90b6eb394edd0d2424450e1f5c33530a7680b95e27c56dcd45ba364"
+    },
+    {
       "path": "dist/src/package-root.js",
       "bytes": 530,
       "sha256": "46932dbdd4daef886a621d0591dac1499a748bd7c82d7cc1d2b630c0f43ce551"
@@ -103,8 +171,8 @@
     },
     {
       "path": "dist/src/runtime.js",
-      "bytes": 1423,
-      "sha256": "5fc5a5ea9019fe0167697f2b921b2dac19650899a9256ef5280be0a5509abc6c"
+      "bytes": 1642,
+      "sha256": "e2118f133cba9aa847d8e62af1c6ba1500568d7022f31ffad38d6bd1b24cea07"
     },
     {
       "path": "dist/src/server.js",
@@ -115,6 +183,11 @@
       "path": "dist/src/strict-json.js",
       "bytes": 7279,
       "sha256": "17029ea9c69799b760ea842ccc2c05f33ee6d35acf17c4240ff834e1f7b30284"
+    },
+    {
+      "path": "dist/tests/evidence-admission-excluded-022.test.js",
+      "bytes": 3463,
+      "sha256": "f1be4168fdca7258f3f0b5890012d8a72c33c63f7bb854a77a618b27ebf62c7a"
     },
     {
       "path": "dist/tests/evidence.test.js",
@@ -152,6 +225,56 @@
       "sha256": "22fc4b4eae797911e9cc50b3624483f7e93012f664995ae6125d68a0577d3c78"
     },
     {
+      "path": "dist/tests/m1/m1-contract-examples.test.js",
+      "bytes": 5746,
+      "sha256": "33182f2a057ed6424d9c71183eae5a5859a31e84525779a3d8f3de148b195cbc"
+    },
+    {
+      "path": "dist/tests/m1/m1-facade-offline.test.js",
+      "bytes": 2773,
+      "sha256": "017e61e6703427e96911c181767f66699ed617e84147a757fdb716216ce0942d"
+    },
+    {
+      "path": "dist/tests/m1/m1-package-consumer.test.js",
+      "bytes": 2786,
+      "sha256": "7e311df83b2c2871d40d841eca1abb8a387a561dfe9965d3d2a6916eb01761eb"
+    },
+    {
+      "path": "dist/tests/m1/m1-receipt-limits.test.js",
+      "bytes": 2159,
+      "sha256": "3735ab01c8814ea42caf944b0eae7fea6155da797680ceac158ea3dbd0bf9efc"
+    },
+    {
+      "path": "dist/tests/m1/m1-replay-oracles.test.js",
+      "bytes": 8218,
+      "sha256": "680569b90b478e5092ba3ac5fb370944acb339997abeababf9c35d7c784e30c9"
+    },
+    {
+      "path": "dist/tests/m1/m1-stages.test.js",
+      "bytes": 5702,
+      "sha256": "f72904bd2327cba3e51e7b895008cc00467560e945860b29afe9ceb1c70a9cb8"
+    },
+    {
+      "path": "dist/tests/m1/oracles/admit-truth-table.js",
+      "bytes": 350,
+      "sha256": "9ccdd3a5a761f91a20931de3a2e2a960260f55d14b63b40b7b9faccdde74b70e"
+    },
+    {
+      "path": "dist/tests/m1/oracles/facts-state-oracle.js",
+      "bytes": 1128,
+      "sha256": "3f700f941f0a9d87c0c8778ad66015222d38ba70d7c3efc3692b0f6786c858f0"
+    },
+    {
+      "path": "dist/tests/m1/oracles/link-missing-oracle.js",
+      "bytes": 459,
+      "sha256": "513842847b6d5bcf287ef91be3b8cf60dead517ea3b636e2ac77c4795457b4d0"
+    },
+    {
+      "path": "dist/tests/m1/oracles/timebox-lex-oracle.js",
+      "bytes": 270,
+      "sha256": "e214248ad28faa0ed4aa057ee3cf148d203125a416298e2508101b4070d8ff25"
+    },
+    {
       "path": "dist/tests/numeric-json.test.js",
       "bytes": 15301,
       "sha256": "3751787bb5eb7a08c798323667f787a618933c6e07a51d76900abc401af1ad04"
@@ -187,6 +310,11 @@
       "sha256": "a1f3c748082360b3257287aac3a888a9586dd532797791b60cf64724da1cea94"
     },
     {
+      "path": "dist/tests/verify-package-git.test.js",
+      "bytes": 4516,
+      "sha256": "d3c8791911a766aa44d1f0407c151ec26609e097a84fae983ede3bfbefa66861"
+    },
+    {
       "path": "examples/artifact.txt",
       "bytes": 45,
       "sha256": "7738ea8df0c983596d149d344660db828b1b2474e0abad2b2ef46841b5bf5172"
@@ -195,6 +323,11 @@
       "path": "examples/discovery-deferred.json",
       "bytes": 1071,
       "sha256": "5b87c063d28b613c19e9429f8935dca5e7a7b7592c7b13a1e1259762372c26eb"
+    },
+    {
+      "path": "examples/headless-adopter/run.mjs",
+      "bytes": 1184,
+      "sha256": "f98494cbc64b407e05f5a10f2436945da5c55108770231f3a4954d85d445d56f"
     },
     {
       "path": "examples/release-authorization.json",
@@ -223,8 +356,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 1250,
-      "sha256": "a3697c1773d5dc406c8f273c1fefb8aaaac6a2e082d67dc53cc312c552363ad2"
+      "bytes": 1430,
+      "sha256": "e9ccce3091449f6ee09e427dc910e58fef4ec50c5339e1caf2c66e6eac070089"
     },
     {
       "path": "scripts/build-bundle.mjs",
@@ -233,18 +366,18 @@
     },
     {
       "path": "src/canonical.ts",
-      "bytes": 5367,
-      "sha256": "61c80fc4cab9f18796e7e64a78bd48159dd5ca95168410be469ff7df0deae8ea"
+      "bytes": 5551,
+      "sha256": "e7e80105760d469ef98b4ff86d1176db5c4938dae6988345c52ee6ee35d9c568"
     },
     {
       "path": "src/cli.ts",
-      "bytes": 4703,
-      "sha256": "8477be4cc9f4354c4eeee75d683e60b9481f6ca64ea7799dc85c73ead6ce796e"
+      "bytes": 4953,
+      "sha256": "e0e50a23ffa626a2c9f06354330361ef3d55b68e2ff3cff2952198c3b06d5fe7"
     },
     {
       "path": "src/evidence.ts",
-      "bytes": 12646,
-      "sha256": "472f1383e019cde61395bb6b291e3d8cc4a50223bb2bd7fff66b3cb2db5bb738"
+      "bytes": 13961,
+      "sha256": "1b346804600b374e94413245567593857dc39b592a593b146d83e1718eb35b7e"
     },
     {
       "path": "src/examples.ts",
@@ -253,8 +386,8 @@
     },
     {
       "path": "src/index.ts",
-      "bytes": 310,
-      "sha256": "1228fe9a112a8d1d1b62997d2bd604edd9690bcc8965b4c883293c1dcca655ab"
+      "bytes": 405,
+      "sha256": "39aa328bb290b1d40c0c2884c292310bad2eb76862b73c133a14bfd9957555c2"
     },
     {
       "path": "src/inference/adequacy.ts",
@@ -287,6 +420,66 @@
       "sha256": "2b4840a4e853a523ce014f1edf822ee1492c208d04b3e95ba424129970fbf967"
     },
     {
+      "path": "src/m1/admit.ts",
+      "bytes": 4134,
+      "sha256": "2a1dd83b1b7e4d64dac3cad9f3d24795f1785cd0bbbcfaa73a1c877933dcd8a2"
+    },
+    {
+      "path": "src/m1/claim-key.ts",
+      "bytes": 739,
+      "sha256": "45592b93578d4b1d981d8d2fd3caf60b9d9d9e1bc7141170f474a44d66f6b198"
+    },
+    {
+      "path": "src/m1/errors.ts",
+      "bytes": 933,
+      "sha256": "8bad28cf57efba388600e96307ecbe12e689b242dd3bf69499b4137a1b8b10bf"
+    },
+    {
+      "path": "src/m1/evaluate.ts",
+      "bytes": 3889,
+      "sha256": "1999cd4508d1cc4112d61810fba9e8e21bf40591e5f51e6a310556004697dc0a"
+    },
+    {
+      "path": "src/m1/facts.ts",
+      "bytes": 3434,
+      "sha256": "6ec99a38861bfa47386b8392e063cd2aa194356c693543a74cbea0d4d14b2ef5"
+    },
+    {
+      "path": "src/m1/index.ts",
+      "bytes": 517,
+      "sha256": "a5195717bff4c38991818160a684ac8c963a83f4ce213a88f4f00673d280f777"
+    },
+    {
+      "path": "src/m1/link.ts",
+      "bytes": 3494,
+      "sha256": "d5238e19564ff9eb172dbac3f52b98ddbb6458ba04f71e40aa6dabeb672ff93e"
+    },
+    {
+      "path": "src/m1/receipt.ts",
+      "bytes": 6250,
+      "sha256": "35e619d58d6b0a79392715496b61220e92914ae623d540b8c23ef3b28aae494d"
+    },
+    {
+      "path": "src/m1/replay.ts",
+      "bytes": 3635,
+      "sha256": "8602574ab7ef7fd2b28a93ec401510b92bddbcdbdc9c9e5335207633e0d80c75"
+    },
+    {
+      "path": "src/m1/timebox.ts",
+      "bytes": 902,
+      "sha256": "cee465c4890867a1a5d912776e3ebcbdd878fbfd7c4efde4bb0193a271265000"
+    },
+    {
+      "path": "src/m1/typed-value.ts",
+      "bytes": 1781,
+      "sha256": "419c154a421c5cfaa22ec957d378460bf445b72b527a8fe1231371c99aea1c6e"
+    },
+    {
+      "path": "src/m1/validate.ts",
+      "bytes": 14307,
+      "sha256": "d7c85ef4d3ef7614f1c910dc838e4007e618a9355d04595d8740138916969925"
+    },
+    {
       "path": "src/package-root.ts",
       "bytes": 549,
       "sha256": "f464fcae7725e7053ebfd3997d9df9db2d8710b695dab2dd1a52bfc6be18f085"
@@ -308,8 +501,8 @@
     },
     {
       "path": "src/runtime.ts",
-      "bytes": 1604,
-      "sha256": "0f44da50b3575a5c3d68822338dd11c6bac6f90406600ad837b9949503c3475e"
+      "bytes": 1804,
+      "sha256": "3541591c2e6165b410671d9e053a883827c5f255b3dd254136dbd34bddf1db62"
     },
     {
       "path": "src/server.ts",
@@ -350,6 +543,11 @@
       "path": "standalone/runtime.mjs",
       "bytes": 1021,
       "sha256": "7d25515ae154c56f1ef2e57e8d3e13b2c1607075fa3288678988741853704a85"
+    },
+    {
+      "path": "tests/fixtures/m1-contract-examples.json",
+      "bytes": 53726,
+      "sha256": "dbc71ff61726e5c23b4966e1d4636150d71c0577e5d6028ff684d3c17deb25d3"
     },
     {
       "path": "tests/fixtures/regression/adequacy/with-zero-prior.json",
